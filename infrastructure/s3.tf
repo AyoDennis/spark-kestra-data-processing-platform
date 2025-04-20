@@ -41,7 +41,4 @@ resource "aws_s3_bucket_versioning" "s3-output-versioning_example" {
 
 resource "aws_s3_bucket_versioning" "s3-logs-versioning_example" {
   bucket = aws_s3_bucket.s3-logs.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+  
