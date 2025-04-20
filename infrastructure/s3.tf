@@ -24,3 +24,10 @@ resource "aws_s3_bucket" "s3-logs" {
     Environment = "Production"
   }
 }
+
+resource "aws_s3_bucket_versioning" "s3-input-versioning" {
+  bucket = aws_s3_bucket.s3-input.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
