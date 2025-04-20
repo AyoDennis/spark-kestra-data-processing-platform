@@ -9,3 +9,9 @@ resource "aws_s3_bucket" "s3-input" {
 
 resource "aws_s3_bucket" "s3-output" {
   bucket = "spark-job-data-output"
+
+  tags = {
+    Service     = "EMR"
+    Environment = "Production"
+  }
+}
