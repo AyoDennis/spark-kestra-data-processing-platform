@@ -5,4 +5,6 @@ resource "aws_vpc" "emr-vpc" {
 
   tags = {
     Name        = "custom-vpc"
-    
+    environment = "production"
+   
+}
