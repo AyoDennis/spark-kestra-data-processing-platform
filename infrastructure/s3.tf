@@ -18,3 +18,9 @@ resource "aws_s3_bucket" "s3-output" {
 
 resource "aws_s3_bucket" "s3-logs" {
   bucket = "emr-cluster-spark-logs"
+
+  tags = {
+    Service     = "EMR"
+    Environment = "Production"
+  }
+}
