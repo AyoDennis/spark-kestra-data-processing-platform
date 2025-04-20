@@ -6,5 +6,7 @@ resource "aws_vpc" "emr-vpc" {
   tags = {
     Name        = "custom-vpc"
     environment = "production"
-   
+    owner       = "data_platform_team"
+    managed_by  = "terraform"
+  }
 }
