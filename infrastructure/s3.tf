@@ -31,3 +31,10 @@ resource "aws_s3_bucket_versioning" "s3-input-versioning" {
     status = "Enabled"
   }
 }
+
+resource "aws_s3_bucket_versioning" "s3-output-versioning_example" {
+  bucket = aws_s3_bucket.s3-output.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
