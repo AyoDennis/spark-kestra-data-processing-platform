@@ -15,3 +15,6 @@ resource "aws_s3_bucket" "s3-output" {
     Environment = "Production"
   }
 }
+
+resource "aws_s3_bucket" "s3-logs" {
+  bucket = "emr-cluster-spark-logs"
