@@ -6,3 +6,6 @@ resource "aws_s3_bucket" "s3-input" {
     Environment = "Production"
   }
 }
+
+resource "aws_s3_bucket" "s3-output" {
+  bucket = "spark-job-data-output"
