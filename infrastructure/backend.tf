@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "kestra-data-processing-platform-state"
-    key    = "module_test/terraform.tfstate"
-    region = "us-east-1"
-    profile = "personal"
+    bucket  = "spark-kestra-platform"
+    key     = "key/terraform.tfstate"
+    region  = "eu-central-1"
+    profile = "mayor"
   }
 }
