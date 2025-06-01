@@ -3,6 +3,5 @@ terraform {
     bucket  = "spark-kestra-platform"
     key     = "key/terraform.tfstate"
     region  = "eu-central-1"
-    profile = "mayor"
   }
 }
