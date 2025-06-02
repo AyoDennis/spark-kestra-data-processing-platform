@@ -89,6 +89,6 @@ jobs:
 
       - name: Sync Spark Application to S3
         run: |
-          aws s3 cp spark/demo.py s3://${{ secrets.BUCKET_NAME }}/spark_app/
+          aws s3 sync spark/demo.py s3://${{ secrets.BUCKET_NAME }}/spark_app/
         
 
