@@ -1,9 +1,9 @@
-# name: Upload Python Spark Job to S3
+name: Upload Python Spark Job to S3
 
-# on:
-#   push:
-#     branches:
-#       - '**'  # Runs on all branches
+on:
+  push:
+    branches:
+      - '**'  # Runs on all branches
 #     paths:
 #       - 'spark/demo.py'  # Only trigger when this file changes
 
@@ -38,16 +38,16 @@
 #           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 #           aws_region: eu-central-1
 
-name: CI/ CD
+# name: CI/ CD
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'spark/**'
-      # - 'terraform/**'
-      # - 'etl/**'
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - 'spark/**'
+#       # - 'terraform/**'
+#       # - 'etl/**'
 
 jobs:
   lint-pyspark:
