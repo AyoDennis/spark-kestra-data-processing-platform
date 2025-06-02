@@ -79,8 +79,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        env:
-          BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -91,8 +89,6 @@ jobs:
 
       - name: Sync Spark Application to S3
         run: |
-          ls
-          echo $BUCKET_NAME
-          aws s3 sync spark/demo.py s3://$BUCKET_NAME/spark_app/
+          aws s3 sync spark/demo.py s3://${{ secrets.BUCKET_NAME }}/spark_app/
         
 
