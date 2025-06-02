@@ -47,7 +47,7 @@ on:
 #     paths:
 #       - 'spark/**'
 #       # - 'terraform/**'
-#       # - 'etl/**'
+#       # - 'etl/*d*'
 
 jobs:
   lint-pyspark:
