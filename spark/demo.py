@@ -9,15 +9,14 @@ load_dotenv()
 
 # sec = os.getenv("SECRET_ACCESS_KEY")
 
-# print(sec)
 
 first = os.getenv("FIRST_NAME")
-last = os.getenv("LAST_NAME")
+lasts = os.getenv("LAST_NAME")
 combine = os.getenv("COMBINE")
 
 
 print(first)
-print(last)
+print(lasts)
 print(combine)
 
 # print(os.environ)
