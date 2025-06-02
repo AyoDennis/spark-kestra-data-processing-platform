@@ -3,9 +3,9 @@ name: Upload Python Spark Job to S3
 on:
   push:
     branches:
-      - '**'  # Runs on all branches
-#     paths:
-#       - 'spark/demo.py'  # Only trigger when this file changes
+      # - '**'  # Runs on all branches
+    paths:
+      - 'spark/demo.py'  # Only trigger when this file changes
 
 # jobs:
 #   upload-spark-job:
