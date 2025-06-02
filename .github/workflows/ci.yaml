@@ -47,7 +47,7 @@ on:
 #     paths:
 #       - 'spark/**'
 #       # - 'terraform/**'
-#       # - 'etl/*d*'
+#       # - 'etl/**'
 
 jobs:
   lint-pyspark:
@@ -67,10 +67,10 @@ jobs:
           pip install flake8 isort
 
       - name: Run flake8
-        run: flake8 dags/ etl/
+        run: flake8 .
 
       - name: Run isort
-        run: isort --check-only dags/ etl/
+        run: isort .
 
   sync-spark:
     name: Sync spark script to S3
@@ -79,9 +79,6 @@ jobs:
     env:
       BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -91,5 +88,5 @@ jobs:
 
       - name: Sync DAGs to S3
         run: |
-          aws s3 sync etl/ s3://$BUCKET_NAME/etl/
+          aws s3 sync etl/ s3://$BUCKET_NAME/spark_app/
         
