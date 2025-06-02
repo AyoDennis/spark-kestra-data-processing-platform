@@ -11,6 +11,23 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
+       - name: checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.11.0"
+
+      - name: install dependencies
+        run: pip install isort flake8
+
+      - name: Running isort .
+        run: isort --check-only  .
+
+      - name: Running flake8
+        run: flake8 .
+
+    
       - name: checkout git repository
         uses: actions/checkout@v2
 
