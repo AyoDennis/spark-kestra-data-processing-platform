@@ -5,49 +5,8 @@ on:
     branches:
       # - '**'  # Runs on all branches
     paths:
-      - 'spark/demo.py'  # Only trigger when this file changes
-
-# jobs:
-#   upload-spark-job:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
-
-#       - name: Set up Python 3.11
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.11'
-
-#       - name: Install linting tools
-#         run: pip install isort flake8
-
-#       - name: Run isort (check formatting)
-#         run: isort --check-only spark/demo.py
-
-#       - name: Run flake8 (linting)
-#         run: flake8 spark/demo.py
-
-#       - name: Upload Spark script to S3
-#         uses: keithweaver/aws-s3-github-action@v1.0.0
-#         with:
-#           command: cp
-#           source: spark/demo.py
-#           destination: s3://spark-job-data-input/spark_app/demo.py
-#           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
-#           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws_region: eu-central-1
-
-# name: CI/ CD
-
-# on:
-#   push:
-#     branches:
-#       - main
-#     paths:
-#       - 'spark/**'
-#       # - 'terraform/**'
-#       # - 'etl/**'
+      - 'spark/input_data/demo.py'  # Only trigger when this file changes
+      - 'spark/data_source/'
 
 jobs:
   lint-pyspark:
@@ -89,6 +48,7 @@ jobs:
 
       - name: Sync Spark Application to S3
         run: |
-          aws s3 sync ./spark s3://${{ secrets.BUCKET_NAME }}/spark_app/ --exclude "*" --include "demo.py"
+          aws s3 sync ./spark/input_data s3://${{ secrets.BUCKET_NAME }}/spark_app/ --exclude "*" --include "demo.py"
+          aws s3 sync ./spark/data_source s3://${{ secrets.BUCKET_NAME }}/data_source/ 
         
 
