@@ -1,39 +1,111 @@
-name: Upload Python Spark Job to S3
+# name: Upload Python Spark Job to S3
+
+# on:
+#   push:
+#     branches:
+#       - '**'  # Runs on all branches
+#     paths:
+#       - 'spark/demo.py'  # Only trigger when this file changes
+
+# jobs:
+#   upload-spark-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
+
+#       - name: Set up Python 3.11
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.11'
+
+#       - name: Install linting tools
+#         run: pip install isort flake8
+
+#       - name: Run isort (check formatting)
+#         run: isort --check-only spark/demo.py
+
+#       - name: Run flake8 (linting)
+#         run: flake8 spark/demo.py
+
+#       - name: Upload Spark script to S3
+#         uses: keithweaver/aws-s3-github-action@v1.0.0
+#         with:
+#           command: cp
+#           source: spark/demo.py
+#           destination: s3://spark-job-data-input/spark_app/demo.py
+#           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+#           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws_region: eu-central-1
+
+name: CI/ CD
 
 on:
   push:
     branches:
-      - '**'  # Runs on all branches
+      - main
     paths:
-      - 'spark/demo.py'  # Only trigger when this file changes
+      - 'spark/**'
+      # - 'terraform/**'
+      # - 'etl/**'
 
 jobs:
-  upload-spark-job:
+  lint-pyspark:
+    name: Lint PySpark
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.10'
 
-      - name: Install linting tools
-        run: pip install isort flake8
+      - name: Install Python linters
+        run: |
+          pip install flake8 isort
 
-      - name: Run isort (check formatting)
-        run: isort --check-only spark/demo.py
+      - name: Run flake8
+        run: flake8 dags/ etl/
 
-      - name: Run flake8 (linting)
-        run: flake8 spark/demo.py
+      - name: Run isort
+        run: isort --check-only dags/ etl/
 
-      - name: Upload Spark script to S3
-        uses: keithweaver/aws-s3-github-action@v1.0.0
+  terraform-lint:
+    name: Lint Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install TFLint
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          tflint --version
+
+      - name: Run TFLint
+        working-directory: terraform
+        run: tflint 
+
+  sync-dags:
+    name: Sync spark script to S3
+    runs-on: ubuntu-latest
+    needs: [lint-pyspark]
+    env:
+      BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          command: cp
-          source: spark/demo.py
-          destination: s3://spark-job-data-input/spark_app/demo.py
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: eu-central-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }} 
+
+      - name: Sync DAGs to S3
+        run: |
+          aws s3 sync etl/ s3://$BUCKET_NAME/etl/
+        

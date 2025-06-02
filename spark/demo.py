@@ -12,7 +12,7 @@ load_dotenv()
 
 first = os.getenv("FIRST_NAME")
 lasts = os.getenv("LAST_NAME")
-combine = os.getenv("COMBINE")
+# combine = os.getenv("COMBINE")
 
 
 print(first)
