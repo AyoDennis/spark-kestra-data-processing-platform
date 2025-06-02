@@ -16,7 +16,7 @@ combine = os.getenv("COMBINE")
 
 
 print(first)
-print(lasts)
+# print(lasts)
 # print(combine)
 # print('hello')
 
