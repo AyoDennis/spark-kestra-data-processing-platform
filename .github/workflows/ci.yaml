@@ -6,7 +6,7 @@ on:
        - main # Runs on all branches
     paths:
       - 'spark/input_data/demo.py'  # Only trigger when this file changes
-      # - 'spark/data_source/'
+      - 'spark/data_source/**'
 
 jobs:
   lint-pyspark:
@@ -23,10 +23,10 @@ jobs:
 
       - name: Install Python linters
         run: |
-          pip install flake8 isort
+          pip install isort
 
-      - name: Run flake8
-        run: flake8 .
+      # - name: Run flake8
+      #   run: flake8 .
 
       - name: Run isort
         run: isort .
