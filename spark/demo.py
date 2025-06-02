@@ -21,3 +21,5 @@ df = df.groupBy("BusinessTravel").agg({"Age": "sum"}).sort("BusinessTravel")
 rename_df = df.withColumnRenamed('sum(Age)', 'total_age')
 rename_df.show()
 rename_df.write.parquet("s3a://spark-job-data-output/spark_output/employee/",mode="overwrite")
+
+print('hello')

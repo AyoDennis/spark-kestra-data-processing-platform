@@ -3,10 +3,10 @@ name: Upload Python Spark Job to S3
 on:
   push:
     branches:
-      # - '**'  # Runs on all branches
+       - main '**'  # Runs on all branches
     paths:
       - 'spark/input_data/demo.py'  # Only trigger when this file changes
-      - 'spark/data_source/'
+      # - 'spark/data_source/'
 
 jobs:
   lint-pyspark:
