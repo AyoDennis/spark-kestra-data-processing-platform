@@ -10,7 +10,7 @@ spark = SparkSession.builder \
     .config("spark.driver.extraJavaOptions", "-Dlog4j.configuration=file:/etc/spark/log4j.properties") \
     .getOrCreate()
 
-# Reduce log noise (optional)
+# Reduce log noise (optional))
 spark.sparkContext.setLogLevel("WARN")
 
 
