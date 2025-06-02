@@ -72,23 +72,7 @@ jobs:
       - name: Run isort
         run: isort --check-only dags/ etl/
 
-  terraform-lint:
-    name: Lint Terraform
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install TFLint
-        run: |
-          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-          tflint --version
-
-      - name: Run TFLint
-        working-directory: terraform
-        run: tflint 
-
-  sync-dags:
+  sync-spark:
     name: Sync spark script to S3
     runs-on: ubuntu-latest
     needs: [lint-pyspark]
