@@ -1,37 +1,35 @@
-name: Upload to S3
+name: Upload Python Spark Job to S3
 
 on:
   push:
     branches:
-      - "**"
+      - "**"  # Runs on all branches (adjust if needed)
     paths:
-      - "spark/demo.py"
+      - "spark/demo.py"  # Only trigger when this file changes
 
 jobs:
-  upload:
+  upload-spark-job:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Updated to v3 (latest)
 
-      - uses: actions/setup-python@v2
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.11.0"
+          python-version: "3.11"
 
-      - name: install dependencies
+      - name: Install linting tools
         run: pip install isort flake8
 
-      - name: Running isort .
-        run: isort --check-only  .
+      - name: Run isort (check formatting)
+        run: isort --check-only .
 
-      - name: Running flake8
+      - name: Run flake8 (linting)
         run: flake8 .
 
-    
-      - name: checkout git repository
-        uses: actions/checkout@v2
-
-      - uses: keithweaver/aws-s3-github-action@v1.0.0
+      - name: Upload Spark script to S3
+        uses: keithweaver/aws-s3-github-action@v1.0.0
         with:
           command: cp
           source: spark/demo.py
