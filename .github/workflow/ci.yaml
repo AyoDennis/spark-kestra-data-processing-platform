@@ -1,0 +1,25 @@
+name: Upload to S3
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - "spark/demo.py"
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout git repository
+        uses: actions/checkout@v2
+
+      - uses: keithweaver/aws-s3-github-action@v1.0.0
+        with:
+          command: cp
+          source: spark/demo.py
+          destination: s3://spark-job-data-input/spark_app/demo.py
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: eu-central-1

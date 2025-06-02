@@ -161,7 +161,7 @@ data "aws_iam_policy_document" "emr_instance_profile_policy" {
       "elasticmapreduce:ListInstanceGroups",
       "elasticmapreduce:ListInstances",
       "elasticmapreduce:ListSteps",
-      "elasticmapreduce:RunJobFlow", # ADDED THIS
+      "elasticmapreduce:RunJobFlow",
       "kinesis:CreateStream",
       "kinesis:DeleteStream",
       "kinesis:DescribeStream",
