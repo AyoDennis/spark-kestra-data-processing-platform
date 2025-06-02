@@ -11,7 +11,6 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-
       - name: checkout git repository
         uses: actions/checkout@v2
 
