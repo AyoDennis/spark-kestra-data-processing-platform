@@ -37,6 +37,7 @@ resource "aws_iam_policy" "kestra_user_policy" {
         Effect = "Allow",
         Action = [
           "iam:PassRole",
+          "iam:PassedToService",
           # "elasticmapreduce:RunJobFlow",
           # "elasticmapreduce:DescribeCluster",
           "elasticmapreduce:RunJobFlow",
@@ -46,7 +47,7 @@ resource "aws_iam_policy" "kestra_user_policy" {
           "elasticmapreduce:DescribeCluster",
           "elasticmapreduce:ListSteps",
           "elasticmapreduce:ListClusters",
-           "logs:CreateLogGroup",
+          "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",
           "ssm:GetParameter",
