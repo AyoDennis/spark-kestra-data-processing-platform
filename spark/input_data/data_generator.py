@@ -69,5 +69,31 @@ def generate_shipments(n):
 
 # Generate and save data
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
+<<<<<<< HEAD
 df.to_csv("shipping_data.csv", index=False)
 print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
+=======
+
+
+logging.info("dataframe created")
+
+
+def s3_load():
+    """
+    Converts a DataFrame to csv and loads it to S3.
+    """
+    s3_path = os.getenv("S3_PATH")
+    logging.info("s3 object initiated")
+    wr.s3.to_csv(
+        df=df,
+        path=s3_path,
+        boto3_session=aws_session(),
+        dataset=False
+    )
+    logging.info("csv conversion and loading successful")
+    return "Data successfully written to S3"
+
+
+s3_load()
+
+>>>>>>> parent of 8d14f67 (linting)
