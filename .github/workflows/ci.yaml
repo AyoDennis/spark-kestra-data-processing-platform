@@ -49,6 +49,5 @@ jobs:
       - name: Sync Spark Application to S3
         run: |
           aws s3 sync ./spark/input_data s3://${{ secrets.BUCKET_NAME }}/spark_app/ --exclude "*" --include "pyspark_app.py"
-          aws s3 sync ./spark/data_source s3://${{ secrets.BUCKET_NAME }}/data_source/ 
         
 

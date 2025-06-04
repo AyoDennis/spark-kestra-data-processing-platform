@@ -63,6 +63,10 @@ logging.info("routes simulated")
 
 # Generate fake shipments
 def generate_shipments(n):
+    """
+    This loops through configurations
+    and route distances and populates shipping
+    """
     shipments = []
     for _ in range(n):
         origin = random.choice(WAREHOUSES)
@@ -106,23 +110,20 @@ def generate_shipments(n):
 # Generate and save data
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
 logging.info("dataframe created")
-# df.to_csv("shipping_data.csv", index=False)
-# print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
 
 def s3_load():
     """
-    Converts a DataFrame to Parquet and loads it to S3.
+    Converts a DataFrame to csv and loads it to S3.
     """
     s3_path = os.getenv("S3_PATH")
     logging.info("s3 object initiated")
     wr.s3.to_csv(
         df=df,
         path=s3_path,
-        mode="overwrite",
         boto3_session=aws_session(),
-        dataset=True
+        dataset=False
     )
-    logging.info("csv conversion successful")
+    logging.info("csv conversion and loading successful")
     return "Data successfully written to S3"
 
 
