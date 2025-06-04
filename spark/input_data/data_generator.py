@@ -17,24 +17,28 @@ load_dotenv()
 # Initialize Faker for fake data
 fake = Faker()
 logging.info("faker instantiated")
+
+
 # Initialize aws session
 def aws_session():
     session = boto3.Session(
-                    aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
-                    aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
-                    region_name= os.getenv("REGION_NAME")
+                    aws_access_key_id=os.getenv("AWS_ACCESS_KEY"),
+                    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+                    region_name=os.getenv("REGION_NAME")
     )
     return session
 
+
 logging.info("aws session instantiated")
+
 
 def boto3_client(aws_service):
 
     client = boto3.client(
         aws_service,
-        aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
-        aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
-         region_name= os.getenv("REGION_NAME"))
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name=os.getenv("REGION_NAME"))
 
     return client
 
@@ -127,4 +131,6 @@ def s3_load():
     logging.info("csv conversion and loading successful")
     return "Data successfully written to S3"
 
+
 s3_load()
+
