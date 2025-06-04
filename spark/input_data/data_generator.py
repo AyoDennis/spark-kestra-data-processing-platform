@@ -105,10 +105,9 @@ def generate_shipments(n):
 
 # Generate and save data
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
+logging.info("dataframe created")
 # df.to_csv("shipping_data.csv", index=False)
 # print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
-
-
 
 def s3_load():
     """
@@ -125,3 +124,6 @@ def s3_load():
     )
     logging.info("csv conversion successful")
     return "Data successfully written to S3"
+
+
+s3_load()
