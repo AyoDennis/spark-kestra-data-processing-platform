@@ -49,7 +49,7 @@ df = spark.read.csv('s3a://spark-job-data-input-test/data-source/emp_dataset.csv
 
 # df = spark.read.csv('s3a://ayodeji-data-ingestion/random_profile/males/91d0d032d3154e669916870e33bb6dd7.snappy.parquet', header=True, inferSchema=True)
 
-print("I have accessed the dataset")
+print("I have accessed the dataset now")
 
 df.groupBy("BusinessTravel").agg({"Age": "sum"}).sort("BusinessTravel").show()
 df = df.groupBy("BusinessTravel").agg({"Age": "sum"}).sort("BusinessTravel")
