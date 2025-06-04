@@ -1,13 +1,14 @@
 import requests
+import os
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
 # Replace with your Kestra API endpoint and namespace
-kestra_api_url = "YOUR_KESTRA_API_URL"
-namespace = "YOUR_NAMESPACE"
-key = "YOUR_KEY"
+kestra_api_url = os.getenv("KESTRA_API_URL")
+namespace = os.getenv("NAMESPACE")
+key = os.getenv("KEY")
 # Construct the URL for fetching the key
 url = f"{kestra_api_url}/api/v1/namespaces/{namespace}/kv/{key}"
 
