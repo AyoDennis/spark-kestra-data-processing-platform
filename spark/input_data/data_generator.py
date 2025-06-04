@@ -15,7 +15,7 @@ load_dotenv()
 
 # Initialize Faker for fake data
 fake = Faker()
-
+logging.info("faker instantiated")
 #Initialize aws session
 def aws_session():
     session = boto3.Session(
@@ -36,6 +36,7 @@ def boto3_client(aws_service):
 
     return client
 
+logging.info("boto3 session instantiated")
 
 # Configuration
 NUM_RECORDS = 1000  # Adjust as needed
