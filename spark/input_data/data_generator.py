@@ -1,17 +1,63 @@
-import pandas as pd
-import numpy as np
-from faker import Faker
-from datetime import datetime, timedelta
+import logging
+import os
 import random
+from datetime import timedelta
+
+import awswrangler as wr
+import boto3
+import pandas as pd
+from dotenv import load_dotenv
+from faker import Faker
+
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
+logging.getLogger().setLevel(20)
+
+load_dotenv()
 
 # Initialize Faker for fake data
 fake = Faker()
+logging.info("faker instantiated")
+
+
+# Initialize aws session
+def aws_session():
+    session = boto3.Session(
+                    aws_access_key_id=os.getenv("AWS_ACCESS_KEY"),
+                    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+                    region_name=os.getenv("REGION_NAME")
+    )
+    return session
+
+
+logging.info("aws session instantiated")
+
+
+def boto3_client(aws_service):
+
+    client = boto3.client(
+        aws_service,
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name=os.getenv("REGION_NAME"))
+
+    return client
+
+
+logging.info("boto3 session instantiated")
+
 
 # Configuration
 NUM_RECORDS = 1000  # Adjust as needed
-WAREHOUSES = ["NY_Warehouse", "TX_Warehouse", "CA_Warehouse", "IL_Warehouse"]
-CITIES = ["Los Angeles", "Chicago", "Miami", "Seattle", "Boston", "Denver", "Atlanta", "Houston"]
+WAREHOUSES = [
+    "NY_Warehouse", "TX_Warehouse",
+    "CA_Warehouse", "IL_Warehouse"
+    ]
+CITIES = ["Los Angeles", "Chicago", "Miami", "Seattle",
+          "Boston", "Denver", "Atlanta", "Houston"
+          ]
 CARRIERS = ["FedEx", "UPS", "DHL", "USPS"]
+
+logging.info("configurations done")
 
 # Route distances (simulated in km)
 ROUTE_DISTANCES = {
@@ -25,32 +71,42 @@ ROUTE_DISTANCES = {
     ("IL_Warehouse", "Houston"): 1370,
 }
 
+
+logging.info("routes simulated")
+
 # Generate fake shipments
+
+
 def generate_shipments(n):
+    """
+    This loops through configurations
+    and route distances and populates shipping
+    """
     shipments = []
     for _ in range(n):
         origin = random.choice(WAREHOUSES)
         destination = random.choice(CITIES)
         carrier = random.choice(CARRIERS)
-        
+
         # Simulate shipping details
         weight = round(random.uniform(1.0, 50.0), 1)
         volume = round(random.uniform(0.1, 1.0), 2)
-        route_distance = ROUTE_DISTANCES.get((origin, destination), random.randint(500, 5000))
-        
+        route_distance = ROUTE_DISTANCES.get((origin, destination),
+                                             random.randint(500, 5000))
+
         # Shipping cost formula (base + weight/distance factors)
         base_cost = random.uniform(10, 30)
         cost = round(base_cost + (weight * 0.5) + (route_distance * 0.01), 2)
-        
+
         # Shipment and delivery dates (1-7 days transit, random delays)
         ship_date = fake.date_between(start_date="-30d", end_date="today")
         transit_days = random.randint(1, 7)
         delay = random.choices([0, 1, 2, 3], weights=[0.7, 0.15, 0.1, 0.05])[0]
         delivery_date = ship_date + timedelta(days=transit_days + delay)
-        
+
         # Delivery status
         status = "Delivered" if delay == 0 else "Delayed"
-        
+
         shipments.append({
             "shipment_id": f"SH{random.randint(1000, 9999)}",
             "origin_warehouse": origin,
@@ -68,11 +124,9 @@ def generate_shipments(n):
     return shipments
 
 # Generate and save data
+
+
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
-<<<<<<< HEAD
-df.to_csv("shipping_data.csv", index=False)
-print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
-=======
 
 
 logging.info("dataframe created")
@@ -95,5 +149,3 @@ def s3_load():
 
 
 s3_load()
-
->>>>>>> parent of 8d14f67 (linting)
