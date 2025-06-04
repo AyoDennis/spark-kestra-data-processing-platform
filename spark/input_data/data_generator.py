@@ -110,7 +110,7 @@ df = pd.DataFrame(generate_shipments(NUM_RECORDS))
 
 
 
-def female_s3_load():
+def s3_load():
     """
     Converts a DataFrame to Parquet and loads it to S3.
     """
