@@ -1,12 +1,13 @@
-import pandas as pd
 import logging
-import awswrangler as wr
 import os
-import boto3
-from faker import Faker
-from datetime import datetime, timedelta
 import random
+from datetime import timedelta
+
+import awswrangler as wr
+import boto3
+import pandas as pd
 from dotenv import load_dotenv
+from faker import Faker
 
 logging.basicConfig(format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
 logging.getLogger().setLevel(20)
@@ -16,7 +17,7 @@ load_dotenv()
 # Initialize Faker for fake data
 fake = Faker()
 logging.info("faker instantiated")
-#Initialize aws session
+# Initialize aws session
 def aws_session():
     session = boto3.Session(
                     aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
@@ -125,6 +126,5 @@ def s3_load():
     )
     logging.info("csv conversion and loading successful")
     return "Data successfully written to S3"
-
 
 s3_load()
