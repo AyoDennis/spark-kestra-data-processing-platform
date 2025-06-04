@@ -70,3 +70,26 @@ def generate_shipments(n):
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
 df.to_csv("shipping_data.csv", index=False)
 print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
+
+
+
+# def boto3_client(aws_service):
+
+#     client = boto3.client(
+#         aws_service,
+#         aws_access_key_id=Variable.get('aws_access_key'),
+#         aws_secret_access_key=Variable.get('aws_secret_access_key'),
+#         region_name="eu-central-1")
+
+#     return client
+
+
+# def upload_to_s3():
+#     """
+#     Uploads the merged CSV file to S3 with proper error handling and logging.
+#     """
+#     try:
+#         s3 = boto3_client("s3")
+#         bucket = "fmcg-de-assessment"
+#         key = "supplier_data/merged_supplier_data.csv"
+#         local_path = "/opt/airflow/dags/merged_supplier_data.csv"
