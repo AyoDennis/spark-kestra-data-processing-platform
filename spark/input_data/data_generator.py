@@ -1,7 +1,12 @@
 import pandas as pd
+import os
+import boto3
 from faker import Faker
 from datetime import datetime, timedelta
 import random
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Initialize Faker for fake data
 fake = Faker()
@@ -73,15 +78,15 @@ print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
 
 
 
-# def boto3_client(aws_service):
+def boto3_client(aws_service):
 
-#     client = boto3.client(
-#         aws_service,
-#         aws_access_key_id=Variable.get('aws_access_key'),
-#         aws_secret_access_key=Variable.get('aws_secret_access_key'),
-#         region_name="eu-central-1")
+    client = boto3.client(
+        aws_service,
+        aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
+        aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name="eu-central-1")
 
-#     return client
+    return client
 
 
 # def upload_to_s3():
