@@ -5,7 +5,7 @@ on:
     branches:
        - main # Runs on all branches
     paths:
-      - 'spark/input_data/pyspark_app'  # Only trigger when this file changes
+      - 'spark/input_data/pyspark_app.py'  # Only trigger when this file changes
       - 'spark/data_source/**'
 
 jobs:
