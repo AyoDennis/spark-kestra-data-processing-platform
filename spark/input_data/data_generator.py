@@ -1,4 +1,6 @@
 import pandas as pd
+import logging
+import awswrangler as wr
 import os
 import boto3
 from faker import Faker
@@ -6,10 +8,34 @@ from datetime import datetime, timedelta
 import random
 from dotenv import load_dotenv
 
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
+logging.getLogger().setLevel(20)
+
 load_dotenv()
 
 # Initialize Faker for fake data
 fake = Faker()
+
+#Initialize aws session
+def aws_session():
+    session = boto3.Session(
+                    aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
+                    aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
+                    region_name= os.getenv("REGION_NAME")
+    )
+    return session
+
+
+def boto3_client(aws_service):
+
+    client = boto3.client(
+        aws_service,
+        aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
+        aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
+         region_name= os.getenv("REGION_NAME"))
+
+    return client
+
 
 # Configuration
 NUM_RECORDS = 1000  # Adjust as needed
@@ -73,27 +99,23 @@ def generate_shipments(n):
 
 # Generate and save data
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
-df.to_csv("shipping_data.csv", index=False)
-print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
+# df.to_csv("shipping_data.csv", index=False)
+# print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
 
 
 
-def boto3_client(aws_service):
-
-    client = boto3.client(
-        aws_service,
-        aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
-        aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
-        region_name="eu-central-1")
-
-    return client
-
-
-def upload_to_s3():
+def female_s3_load():
     """
-    Uploads the merged CSV file to S3 with proper error handling and logging.
+    Converts a DataFrame to Parquet and loads it to S3.
     """
-    s3 = boto3_client("s3")
-    bucket = "spark-job-data-input"
-    key = "data_source/shipping_data.csv"
-    local_path = "s3a://spark-job-data-input/data-source/shipping_data.csv"
+    s3_path = os.getenv("S3_PATH")
+    logging.info("s3 object initiated")
+    wr.s3.to_csv(
+        df=df,
+        path=s3_path,
+        mode="overwrite",
+        boto3_session=aws_session(),
+        dataset=True
+    )
+    logging.info("csv conversion successful")
+    return "Data successfully written to S3"
