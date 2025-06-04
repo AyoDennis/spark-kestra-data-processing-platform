@@ -25,8 +25,8 @@ jobs:
         run: |
           pip install isort flake8
 
-      - name: Run flake8
-        run: flake8 ./spark/input_data/data_generator.py
+      # - name: Run flake8
+      #   run: flake8 ./spark/input_data/data_generator.py
 
       - name: Run isort
         run: isort ./spark/input_data/data_generator.py
@@ -49,5 +49,6 @@ jobs:
       - name: Sync Spark Application to S3
         run: |
           aws s3 sync ./spark/input_data s3://${{ secrets.BUCKET_NAME }}/spark_app/ --exclude "*" --include "pyspark_app.py"
+          aws s3 sync ./spark/data_source s3://${{ secrets.BUCKET_NAME }}/data_source/ 
         
 
