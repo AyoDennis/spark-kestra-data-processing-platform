@@ -188,9 +188,10 @@ This project implements an end-to-end data pipeline for logistics optimization:
 Generate test data (1GB):
 bash
 python generate_shipping_data.py --records 1000000 --output large_dataset.csv
-AWS Infrastructure Setup
 
-S3 Bucket Structure:
+### AWS Infrastructure Setup
+
+* S3 Bucket Structure:
 s3://your-logistics-bucket/
 ├── raw/
 │   └── shipping_data_<date>.csv
@@ -199,8 +200,9 @@ s3://your-logistics-bucket/
 └── processed/
     ├── carrier_metrics/
     └── route_analytics/
-EMR Cluster Creation (CLI):
-bash
+
+* EMR Cluster Creation (CLI):
+bash```
 aws emr create-cluster \
 --name "Shipping Analytics" \
 --release-label emr-6.7.0 \
@@ -208,8 +210,9 @@ aws emr create-cluster \
 --ec2-attributes KeyName=your-key-pair \
 --instance-type m5.2xlarge \
 --instance-count 3 \
---use-default-roles
-🔄 Data Pipeline
+--use-default-roles```
+
+## 🔄 Data Pipeline
 
 1. Data Generation
 
