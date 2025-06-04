@@ -25,6 +25,7 @@ def aws_session():
     )
     return session
 
+logging.info("aws session instantiated")
 
 def boto3_client(aws_service):
 
@@ -44,6 +45,8 @@ WAREHOUSES = ["NY_Warehouse", "TX_Warehouse", "CA_Warehouse", "IL_Warehouse"]
 CITIES = ["Los Angeles", "Chicago", "Miami", "Seattle", "Boston", "Denver", "Atlanta", "Houston"]
 CARRIERS = ["FedEx", "UPS", "DHL", "USPS"]
 
+logging.info("configurations done")
+
 # Route distances (simulated in km)
 ROUTE_DISTANCES = {
     ("NY_Warehouse", "Los Angeles"): 3940,
@@ -55,6 +58,8 @@ ROUTE_DISTANCES = {
     ("CA_Warehouse", "Atlanta"): 3500,
     ("IL_Warehouse", "Houston"): 1370,
 }
+
+logging.info("routes simulated")
 
 # Generate fake shipments
 def generate_shipments(n):
