@@ -89,12 +89,11 @@ def boto3_client(aws_service):
     return client
 
 
-# def upload_to_s3():
-#     """
-#     Uploads the merged CSV file to S3 with proper error handling and logging.
-#     """
-#     try:
-#         s3 = boto3_client("s3")
-#         bucket = "fmcg-de-assessment"
-#         key = "supplier_data/merged_supplier_data.csv"
-#         local_path = "/opt/airflow/dags/merged_supplier_data.csv"
+def upload_to_s3():
+    """
+    Uploads the merged CSV file to S3 with proper error handling and logging.
+    """
+    s3 = boto3_client("s3")
+    bucket = "spark-job-data-input"
+    key = "data_source/shipping_data.csv"
+    local_path = "s3a://spark-job-data-input/data-source/shipping_data.csv"
