@@ -25,8 +25,8 @@ jobs:
         run: |
           pip install isort flake8
 
-      # - name: Run flake8
-      #   run: flake8 ./spark/input_data/data_generator.py
+      - name: Run flake8
+        run: flake8 ./spark/input_data/data_generator.py
 
       - name: Run isort
         run: isort ./spark/input_data/data_generator.py
