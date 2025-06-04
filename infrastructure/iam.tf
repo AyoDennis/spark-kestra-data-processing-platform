@@ -54,7 +54,8 @@ resource "aws_iam_policy" "kestra_user_policy" {
           "ssm:StartSession",
           "s3:GetObject", #starts here
           "s3:PutObject",
-          "s3:ListBucket"
+          "s3:ListBucket",
+          "s3:DeleteObject" 
         ]
         Resource = [
           "*"
