@@ -71,9 +71,12 @@ ROUTE_DISTANCES = {
     ("IL_Warehouse", "Houston"): 1370,
 }
 
+
 logging.info("routes simulated")
 
 # Generate fake shipments
+
+
 def generate_shipments(n):
     """
     This loops through configurations
@@ -84,12 +87,13 @@ def generate_shipments(n):
         origin = random.choice(WAREHOUSES)
         destination = random.choice(CITIES)
         carrier = random.choice(CARRIERS)
-        
+
         # Simulate shipping details
         weight = round(random.uniform(1.0, 50.0), 1)
         volume = round(random.uniform(0.1, 1.0), 2)
-        route_distance = ROUTE_DISTANCES.get((origin, destination), random.randint(500, 5000))
-        
+        route_distance = ROUTE_DISTANCES.get((origin, destination),
+                                             random.randint(500, 5000))
+
         # Shipping cost formula (base + weight/distance factors)
         base_cost = random.uniform(10, 30)
         cost = round(base_cost + (weight * 0.5) + (route_distance * 0.01), 2)
