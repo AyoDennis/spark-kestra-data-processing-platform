@@ -42,12 +42,19 @@ def boto3_client(aws_service):
 
     return client
 
+
 logging.info("boto3 session instantiated")
+
 
 # Configuration
 NUM_RECORDS = 1000  # Adjust as needed
-WAREHOUSES = ["NY_Warehouse", "TX_Warehouse", "CA_Warehouse", "IL_Warehouse"]
-CITIES = ["Los Angeles", "Chicago", "Miami", "Seattle", "Boston", "Denver", "Atlanta", "Houston"]
+WAREHOUSES = [
+    "NY_Warehouse", "TX_Warehouse",
+    "CA_Warehouse", "IL_Warehouse"
+    ]
+CITIES = ["Los Angeles", "Chicago", "Miami", "Seattle",
+          "Boston", "Denver", "Atlanta", "Houston"
+          ]
 CARRIERS = ["FedEx", "UPS", "DHL", "USPS"]
 
 logging.info("configurations done")
