@@ -1,17 +1,51 @@
 import pandas as pd
-import numpy as np
+import logging
+import awswrangler as wr
+import os
+import boto3
 from faker import Faker
 from datetime import datetime, timedelta
 import random
+from dotenv import load_dotenv
+
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
+logging.getLogger().setLevel(20)
+
+load_dotenv()
 
 # Initialize Faker for fake data
 fake = Faker()
+logging.info("faker instantiated")
+#Initialize aws session
+def aws_session():
+    session = boto3.Session(
+                    aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
+                    aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
+                    region_name= os.getenv("REGION_NAME")
+    )
+    return session
+
+logging.info("aws session instantiated")
+
+def boto3_client(aws_service):
+
+    client = boto3.client(
+        aws_service,
+        aws_access_key_id = os.getenv("AWS_ACCESS_KEY"),
+        aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
+         region_name= os.getenv("REGION_NAME"))
+
+    return client
+
+logging.info("boto3 session instantiated")
 
 # Configuration
 NUM_RECORDS = 1000  # Adjust as needed
 WAREHOUSES = ["NY_Warehouse", "TX_Warehouse", "CA_Warehouse", "IL_Warehouse"]
 CITIES = ["Los Angeles", "Chicago", "Miami", "Seattle", "Boston", "Denver", "Atlanta", "Houston"]
 CARRIERS = ["FedEx", "UPS", "DHL", "USPS"]
+
+logging.info("configurations done")
 
 # Route distances (simulated in km)
 ROUTE_DISTANCES = {
@@ -25,8 +59,14 @@ ROUTE_DISTANCES = {
     ("IL_Warehouse", "Houston"): 1370,
 }
 
+logging.info("routes simulated")
+
 # Generate fake shipments
 def generate_shipments(n):
+    """
+    This loops through configurations
+    and route distances and populates shipping
+    """
     shipments = []
     for _ in range(n):
         origin = random.choice(WAREHOUSES)
@@ -69,5 +109,22 @@ def generate_shipments(n):
 
 # Generate and save data
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
-df.to_csv("shipping_data.csv", index=False)
-print(f"Generated {NUM_RECORDS} shipping records in 'shipping_data.csv'.")
+logging.info("dataframe created")
+
+def s3_load():
+    """
+    Converts a DataFrame to csv and loads it to S3.
+    """
+    s3_path = os.getenv("S3_PATH")
+    logging.info("s3 object initiated")
+    wr.s3.to_csv(
+        df=df,
+        path=s3_path,
+        boto3_session=aws_session(),
+        dataset=False
+    )
+    logging.info("csv conversion and loading successful")
+    return "Data successfully written to S3"
+
+
+s3_load()
