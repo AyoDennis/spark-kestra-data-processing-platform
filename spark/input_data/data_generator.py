@@ -124,8 +124,13 @@ def generate_shipments(n):
     return shipments
 
 # Generate and save data
+
+
 df = pd.DataFrame(generate_shipments(NUM_RECORDS))
+
+
 logging.info("dataframe created")
+
 
 def s3_load():
     """
