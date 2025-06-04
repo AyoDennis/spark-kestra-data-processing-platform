@@ -1,7 +1,9 @@
 dotenv==0.9.9
-flake8==7.2.0
-isort==6.0.1
-mccabe==0.7.0
-pycodestyle==2.13.0
-pyflakes==3.3.2
+Faker==37.3.0
+numpy==2.2.6
+pandas==2.2.3
+python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
+pytz==2025.2
+six==1.17.0
+tzdata==2025.2
