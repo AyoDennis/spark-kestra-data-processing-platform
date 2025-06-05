@@ -26,9 +26,10 @@ An automated platform designed to efficiently handle big data workloads (ingesti
 
 | Component | Purpose |
 |:----------|:--------|
-| [CI/CD (GitHub Actions)](https://github.com/Data-Bishop/Team5-BuildItAll-Data-Platform/blob/main/docs/codebase_and_ci_cd.md) | Automates code deployment and infrastructure updates |
-| [Infrastructure (Terraform](https://github.com/Data-Bishop/Team5-BuildItAll-Data-Platform/blob/main/docs/terraform_infrastructure.md) | Automates cloud setup (IAM, S3, networking) |
-| [Orchestration (Apache Airflow)](https://github.com/Data-Bishop/Team5-BuildItAll-Data-Platform/blob/main/docs/airflow_documentation.md) | Manages data pipeline workflows |
+| [Architecture](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/architecture.md) | High-level overview and structure | 
+| [CI/CD (GitHub Actions)](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/ci_cd.md) | Automates code deployment and infrastructure updates |
+| [Infrastructure (Terraform](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/terraform_infrastructure.md) | Automates cloud setup (IAM, S3, networking) |
+| [Orchestration (Kestra)](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/kestra_configuration.md) | Manages data pipeline workflows |
 | [Spark jobs (PySpark)](https://github.com/Data-Bishop/Team5-BuildItAll-Data-Platform/blob/main/docs/spark_jobs.md) | Simulates realistic e-commerce datasets and processing |
 
 ## ☁️ Architecture Overview
