@@ -22,7 +22,7 @@ To successfully implement this solution, I proposed a data-driven overhaul, whic
 An automated platform designed to efficiently handle big data workloads (ingestion, processing, analytics). This platform is also designed to be cost-effective, low-maintenance, and seamless for client onboarding.
 
 
-## ⚙️ Solution Components
+## Solution Snapshots
 
 | Component | Purpose |
 |:----------|:--------|
