@@ -7,7 +7,7 @@ In H1 2025, SwiftShip Logistics, a mid-sized freight company, faced mounting cha
 * Fuel costs had spiked by 40% year-over-year
 * Customers like eMart (their largest retail client) threatened to switch competitors
 
-### The Data Revelation: Solution and Implementation
+### The Data Revelation: Solution 
 As a consultant Data Platform Engineer, I listened intently to the CTO's painpoints and mapped it to a solution:
 
 | Pain Point	| Data Solution	|
@@ -16,10 +16,10 @@ As a consultant Data Platform Engineer, I listened intently to the CTO's painpoi
 | Rising Costs	| Cost-per-mile optimization	|
 | Warehouse Congestion	| Demand heatmaps	|
 
+### The Data Revelation: Bringing it all together 
 To successfully implement this solution, I proposed a data-driven overhaul, which entails:
 
-* An automated platform designed to efficiently handle big data workloads (ingestion, processing, analytics)
-* Is cost-effective, low-maintenance, and seamless for client onboarding
+An automated platform designed to efficiently handle big data workloads (ingestion, processing, analytics). This platform is also designed to be cost-effective, low-maintenance, and seamless for client onboarding.
 
 
 ## ⚙️ Solution Components
