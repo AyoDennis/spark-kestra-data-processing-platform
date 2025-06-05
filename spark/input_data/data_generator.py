@@ -9,15 +9,15 @@ import pandas as pd
 from dotenv import load_dotenv
 from faker import Faker
 
-logging.basicConfig(format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
-logging.getLogger().setLevel(20)
-
-load_dotenv()
 
 # Initialize Faker for fake data
 fake = Faker()
+
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
+logging.getLogger().setLevel(20)
 logging.info("faker instantiated")
 
+load_dotenv()
 
 # Initialize aws session
 def aws_session():
@@ -47,7 +47,7 @@ logging.info("boto3 session instantiated")
 
 
 # Configuration
-NUM_RECORDS = 1000  # Adjust as needed
+NUM_RECORDS = 50000
 WAREHOUSES = [
     "NY_Warehouse", "TX_Warehouse",
     "CA_Warehouse", "IL_Warehouse"
@@ -55,7 +55,8 @@ WAREHOUSES = [
 CITIES = ["Los Angeles", "Chicago", "Miami", "Seattle",
           "Boston", "Denver", "Atlanta", "Houston"
           ]
-CARRIERS = ["FedEx", "UPS", "DHL", "USPS"]
+CARRIERS = ["FedEx", "UPS", "DHL", "USPS",
+            "OnTrac", "Ryder", "Amazon Logistics"]
 
 logging.info("configurations done")
 
@@ -99,7 +100,7 @@ def generate_shipments(n):
         cost = round(base_cost + (weight * 0.5) + (route_distance * 0.01), 2)
 
         # Shipment and delivery dates (1-7 days transit, random delays)
-        ship_date = fake.date_between(start_date="-30d", end_date="today")
+        ship_date = fake.date_between(start_date="-100d", end_date="today")
         transit_days = random.randint(1, 7)
         delay = random.choices([0, 1, 2, 3], weights=[0.7, 0.15, 0.1, 0.05])[0]
         delivery_date = ship_date + timedelta(days=transit_days + delay)
@@ -108,7 +109,7 @@ def generate_shipments(n):
         status = "Delivered" if delay == 0 else "Delayed"
 
         shipments.append({
-            "shipment_id": f"SH{random.randint(1000, 9999)}",
+            "shipment_id": f"SH{random.randint(1000, 99999)}",
             "origin_warehouse": origin,
             "destination_city": destination,
             "carrier": carrier,
@@ -134,17 +135,18 @@ logging.info("dataframe created")
 
 def s3_load():
     """
-    Converts a DataFrame to csv and loads it to S3.
+    Converts a DataFrame to parquet and loads it to S3.
     """
     s3_path = os.getenv("S3_PATH")
     logging.info("s3 object initiated")
-    wr.s3.to_csv(
+    wr.s3.to_parquet(
         df=df,
         path=s3_path,
+        mode="overwrite",
         boto3_session=aws_session(),
-        dataset=False
+        dataset=True
     )
-    logging.info("csv conversion and loading successful")
+    logging.info("parquet conversion and loading successful")
     return "Data successfully written to S3"
 
 

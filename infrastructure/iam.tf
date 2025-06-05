@@ -47,6 +47,7 @@ resource "aws_iam_policy" "kestra_user_policy" {
           "elasticmapreduce:ListClusters",
           "s3:GetObject",
           "s3:PutObject",
+          "s3:DeleteObject",
           "s3:ListBucket"
         ]
         Resource = [
