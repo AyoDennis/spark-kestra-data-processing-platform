@@ -13,7 +13,6 @@ spark = SparkSession.builder \
 
 # Load the CSV data
 df = spark.read.csv("s3a://spark-data-source-1/data_source/shipment/shipping_data.snappy.parquet", header=True, inferSchema=True)
-# df = spark.read.csv("shipping_data.csv", header=True, inferSchema=True)
 
 # 1. Carrier Performance Analysis
 print("\n=== Carrier Performance ===")
@@ -78,5 +77,6 @@ warehouse_demand = df.groupBy("origin_warehouse", "destination_city") \
 
 warehouse_demand.show()
 warehouse_demand.write.parquet("s3a://spark-job-data-output/warehouse_demand",mode="overwrite")
+
 # Stop Spark Session
 spark.stop()
