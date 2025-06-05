@@ -12,7 +12,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # Load the CSV data
-df = spark.read.csv("s3a://spark-data-source-1/data_source/shipment/shipping_data.csv", header=True, inferSchema=True)
+df = spark.read.csv("s3a://spark-data-source-1/data_source/shipment/shipping_data.snappy.parquet", header=True, inferSchema=True)
 # df = spark.read.csv("shipping_data.csv", header=True, inferSchema=True)
 
 # 1. Carrier Performance Analysis
@@ -27,7 +27,7 @@ carrier_performance = df.groupBy("carrier") \
     .orderBy("avg_delay_days")
 
 carrier_performance.show()
-carrier_performance.write.csv("s3a://spark-job-data-output/carrier_performance/",mode="overwrite")
+carrier_performance.write.parquet("s3a://spark-job-data-output/carrier_performance/",mode="overwrite")
 
 # 2. Route Efficiency Analysis
 print("\n=== Route Efficiency ===")
@@ -41,7 +41,7 @@ route_efficiency = df.groupBy("origin_warehouse", "destination_city") \
     .orderBy("avg_delivery_time_days")
 
 route_efficiency.show()
-route_efficiency.write.csv("s3a://spark-job-data-output/route_efficiency",mode="overwrite")
+route_efficiency.write.parquet("s3a://spark-job-data-output/route_efficiency",mode="overwrite")
 
 # 3. Cost vs. Weight/Volume Analysis
 print("\n=== Cost vs. Weight/Volume ===")
@@ -55,7 +55,7 @@ cost_analysis = df.select(
 ).orderBy("cost_per_km")
 
 cost_analysis.show()
-cost_analysis.write.csv("s3a://spark-job-data-output/cost_analysis",mode="overwrite")
+cost_analysis.write.parquet("s3a://spark-job-data-output/cost_analysis",mode="overwrite")
 
 # 4. Delay Trends by Destination
 print("\n=== Delay Trends by Destination ===")
@@ -68,7 +68,7 @@ delay_trends = df.groupBy("destination_city") \
     .orderBy("delay_percentage", ascending=False)
 
 delay_trends.show()
-delay_trends.write.csv("s3a://spark-job-data-output/delay_trends",mode="overwrite")
+delay_trends.write.parquet("s3a://spark-job-data-output/delay_trends",mode="overwrite")
 
 # 5. Optimal Warehouse Analysis (Demand Heatmap)
 print("\n=== Warehouse Demand Heatmap ===")
@@ -77,6 +77,6 @@ warehouse_demand = df.groupBy("origin_warehouse", "destination_city") \
     .orderBy("shipment_count", ascending=False)
 
 warehouse_demand.show()
-warehouse_demand.write.csv("s3a://spark-job-data-output/warehouse_demand",mode="overwrite")
+warehouse_demand.write.parquet("s3a://spark-job-data-output/warehouse_demand",mode="overwrite")
 # Stop Spark Session
 spark.stop()
