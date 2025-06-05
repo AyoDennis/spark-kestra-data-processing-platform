@@ -1,28 +1,28 @@
-
-
 # Scalable Big Data Platform that Transformed Global Logistics
-## Background: The Shipping Dilemma
-In 2024, SwiftShip Logistics, a mid-sized freight company, faced mounting challenges:
+## Background
+### The Shipping Dilemma
+In H1 2025, SwiftShip Logistics, a mid-sized freight company, faced mounting challenges:
 
 * 30% of shipments were delayed by 2+ days
 * Fuel costs had spiked by 40% year-over-year
 * Customers like eMart (their largest retail client) threatened to switch competitors
-<br>
-The root cause? Inefficient routing, manual processes, and no system to predict delays.
+
+### The Data Revelation: Solution 
+As a consultant Data Platform Engineer, I listened intently to the CTO's painpoints and mapped it to a solution:
+
+| Pain Point	| Data Solution	|
+|-------------|--------------- |
+| Unpredictable Delays |	Carrier performance analytics	|
+| Rising Costs	| Cost-per-mile optimization	|
+| Warehouse Congestion	| Demand heatmaps	|
+
+### The Data Revelation: Bringing it all together 
+To successfully implement this solution, I proposed a data-driven overhaul, which entails:
+
+An automated platform designed to efficiently handle big data workloads (ingestion, processing, analytics). This platform is also designed to be cost-effective, low-maintenance, and seamless for client onboarding.
 
 
-BuildItAll is a European consulting firm specialized in helping small and mid-sized companies build scalable Data Platforms. After securing €20M in Series A funding, BuildItAll was approached by a Belgian e-commerce client who generates massive amounts of data daily and wanted to become more data-driven.
-
-Our team was tasked with setting up a cost-optimal, scalable Big Data Processing platform based on Apache Spark on the cloud.
-This product demonstrates the proposed architecture and solution for enabling large-scale data ingestion, processing, and analytics capabilities for the client.
-
-
-## Overview
-The platform is designed to efficiently handle big data workloads while staying true to BuildItAll's core value of building cost-effective cloud solutions.
-It uses AWS, Apache Spark, and Terraform to process large datasets efficiently.
-It is designed to be cost-effective, easy to maintain, and ready for client onboarding.
-
-## ⚙️ Solution Components
+## Solution Snapshots
 
 | Component | Purpose |
 |:----------|:--------|
