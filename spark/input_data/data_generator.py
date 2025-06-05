@@ -100,7 +100,7 @@ def generate_shipments(n):
         cost = round(base_cost + (weight * 0.5) + (route_distance * 0.01), 2)
 
         # Shipment and delivery dates (1-7 days transit, random delays)
-        ship_date = fake.date_between(start_date="-100d", end_date="today")
+        ship_date = fake.date_between(start_date="-190d", end_date="today")
         transit_days = random.randint(1, 7)
         delay = random.choices([0, 1, 2, 3], weights=[0.7, 0.15, 0.1, 0.05])[0]
         delivery_date = ship_date + timedelta(days=transit_days + delay)

@@ -12,7 +12,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # Load the CSV data
-df = spark.read.parquet("s3a://spark-data-source-1/data_source/shipment/shipping_data.snappy.parquet", header=True, inferSchema=True)
+df = spark.read.parquet("s3a://spark-data-source-1/data_source/shipment/shipping_data.snappy.parquet")
 
 # 1. Carrier Performance Analysis
 print("\n=== Carrier Performance ===")
