@@ -11,13 +11,26 @@ In 2024, SwiftShip Logistics, a mid-sized freight company, faced mounting challe
 <br>
 
 ### The Data Revelation
-As a Data Platform Engineer on the team, I was proposed a data-driven overhaul to:
+As a consultant Data Platform Engineer, I listened intently to the CTO's painpoints and mapped it to a solution
 
-* Generated synthetic shipping data mimicking real operations (using scripts like generate_shipping_data.py)
+| Pain Point	| Data Solution	|
+|-------------|--------------- |
+| Unpredictable Delays |	Carrier performance analytics	|
+| Rising Costs	| Cost-per-mile optimization	|
+| Warehouse Congestion	| Demand heatmaps	|
+
+proposed a data-driven overhaul, which entails:
+
+A platform designed to efficiently handle big data workloads while staying true to BuildItAll's core value of building cost-effective cloud solutions.
+It uses AWS, Apache Spark, and Terraform to process large datasets efficiently.
+It is designed to be cost-effective, easy to maintain, and ready for client onboarding
+
+* Generated synthetic shipping data mimicking real operations 
 * 1M+ records covering 12 months
-* Variables: Carriers, routes, weather, fuel prices
+* Variables: `carrier`, `route`, `weight`, `cost`, `delay_days`
 * Built a PySpark pipeline on AWS EMR to analyze:
-* * 
+
+
 
 BuildItAll is a European consulting firm specialized in helping small and mid-sized companies build scalable Data Platforms. After securing €20M in Series A funding, BuildItAll was approached by a Belgian e-commerce client who generates massive amounts of data daily and wanted to become more data-driven.
 
