@@ -25,7 +25,7 @@ Config:
 
 ## **2. Components**
 ### **2.1 Kestra Deployment**
-- **Deployment**: Kestra Airflow is deployed on a local machine using Docker Compose.
+- **Deployment**: Kestra is deployed using Docker Compose.
 - **Services**:
   - **Webserver**: Provides the Airflow UI, accessible on port `8080`.
   - **Scheduler**: Manages the execution of tasks in the DAGs.
