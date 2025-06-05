@@ -30,7 +30,7 @@ An automated platform designed to efficiently handle big data workloads (ingesti
 | [CI/CD (GitHub Actions)](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/ci_cd.md) | Automates code deployment and infrastructure updates |
 | [Infrastructure (Terraform](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/terraform_infrastructure.md) | Automates cloud setup (IAM, S3, networking) |
 | [Orchestration (Kestra)](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/kestra_configuration.md) | Manages data pipeline workflows |
-| [Spark jobs (PySpark)](https://github.com/Data-Bishop/Team5-BuildItAll-Data-Platform/blob/main/docs/spark_jobs.md) | Simulates realistic e-commerce datasets and processing |
+| [Data Processing (PySpark)](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/spark_configuration.md) | Simulates realistic shipping/logistics datasets and processing |
 
 ## ☁️ Architecture Overview
 ![workflow](/assests/workflow.svg)
