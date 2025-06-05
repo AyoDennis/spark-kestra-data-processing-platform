@@ -1,8 +1,9 @@
 # **Kestra Documentation**
 
 ## **1. Purpose**
-Kestra is a unified orchestration platform to simplify business workflows. It provides densely-integrated, easy-to-use platform that supports both resource provisioning and orchestration. It schedules and monitors flows, ensuring that workflows are executed in the correct order and at the right time.
----
+
+Kestra is a unified orchestration platform to simplify business workflows. It provides an easy-to-use platform that supports both resource provisioning and orchestration. It schedules and monitors flows, ensuring that workflows are executed in the correct order and at the right time.
+
 
 
 Your deployment uses three key services defined in docker-compose.yml:
