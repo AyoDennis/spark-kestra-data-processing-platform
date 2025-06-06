@@ -21,7 +21,7 @@ Kestra is a unified orchestration platform to simplify business workflows. It pr
 - **Location**: Theae are stored in the `spark/` directory.
 - **Files**:
   - `data_generation.py`: Generates synthetic shipment data to be used in EMR.
-  - `pyspark_app.py`: Processes raw data into structured formats using Spark on EMR.
+  - `pyspark_app.py`: Processes shipping data data into structured formats using Spark on EMR.
 
 ### **2.3 Configuration**
 - **Docker Compose**:
