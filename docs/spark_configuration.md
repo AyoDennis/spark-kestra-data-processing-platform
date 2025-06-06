@@ -6,8 +6,12 @@ Spark jobs are used for data generation and processing. They run on Amazon EMR c
 
 ---
 
-## **2. Spark Jobs**
-### **2.1 Data Processor**
+## **2. Workflow**
+
+### **2.1 Data Generation**
+- The `data_generator.py` script is ran on the terminal. One run would create 50,000 unique rows of shipping data 
+
+### **2.2 Data Processor**
 - **Script**: `data_processor.py`
 - **Purpose**: Processes shipping data and saves it to the `carrier_performance/`, `route_efficiency`, `cost_analysis`, `delay_trends`, and `warehouse_demand` folders in the S3 `spark-job-data-output` bucket.
 - **Inputs**:
@@ -15,37 +19,12 @@ Spark jobs are used for data generation and processing. They run on Amazon EMR c
 - **Outputs**:
   - Processed data in Parquet format.
 - **Execution**:
-  - Submitted to the EMR cluster by the `spark-kestra` flow.
+  - Submitted to the EMR cluster by kestra's `spark-kestra` flow.
 
 ---
 
-## **3. Configuration**
-- **Dependencies**:
-  - Python dependencies for Spark jobs are listed in `spark_jobs/requirements.txt`.
-- **Bootstrap Script**:
-  - `bootstrap.sh` installs required dependencies on EMR nodes.
-
----
-
-## **4. Workflow**
-### **4.1 Data Generation**
-1. The `data_generator.py` script is submitted to the EMR cluster.
-2. The script generates synthetic data and saves it to the `raw/` folder in the S3 bucket.
-
-### **4.2 Data Processing**
-1. The `data_processor.py` script is submitted to the EMR cluster.
-2. The script processes raw data and saves it to the `processed/` folder in the S3 bucket.
-
----
-
-## **5. Logs**
+## **3. Logs**
 - **Location**:
-  - Spark job logs are stored in the `builditall-logs/emr/` folder in the S3 bucket.
+  - Spark job logs are stored in the `emr-cluster-spark-logs` S3 bucket.
 - **Access**:
   - Logs can be accessed via the EMR console or directly from the S3 bucket.
-
----
-
-## **6. Notifications**
-- Email notifications have also been set up for task run success and failures.
-- This is handled by the `email_alert.py` script in the `notification` subfolder in the `dags` folder.
