@@ -1,4 +1,4 @@
-# Scalable Big Data Platform that Transformed Global Logistics
+# Scalable Logistics Big Data Platform
 ## Background
 ### The Shipping Dilemma
 In H1 2025, SwiftShip Logistics, a mid-sized freight company, faced mounting challenges:
