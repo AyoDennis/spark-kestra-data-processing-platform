@@ -47,6 +47,6 @@ Kestra is a unified orchestration platform to simplify business workflows. It pr
 
 ### **4.2 Logs**
 - **Location**:
-  - EMR logs are stored in the `emr-cluster-spark-logs` folder in the S3 bucket.
+  - EMR logs are stored in the `emr-cluster-spark-logs` S3 bucket.
 
 ---
