@@ -133,7 +133,7 @@ df = pd.DataFrame(generate_shipments(NUM_RECORDS))
 logging.info("dataframe created")
 
 
-def s3_load():
+def s3load():
     """
     Converts a DataFrame to parquet and loads it to S3.
     """
@@ -149,5 +149,5 @@ def s3_load():
     logging.info("parquet conversion and loading successful")
     return "Data successfully written to S3"
 
-
-s3_load()
+if __name__ == "__s3load__":
+    s3load()

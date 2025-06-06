@@ -1,2 +1,42 @@
-id: aws_emr_create_cluster
-namespace: production
+id: spark-kestra
+namespace: company.team
+
+
+tasks:
+   
+  - id: create_cluster
+    type: io.kestra.plugin.aws.emr.CreateClusterAndSubmitSteps
+    accessKeyId: "{{ kv('aws_access_key') }}"
+    secretKeyId: "{{ kv('aws_secret_access_key') }}"
+    region: eu-central-1
+    clusterName: "Spark job cluster"
+    logUri: "s3://emr-cluster-spark-logs/test-emr-logs"
+    keepJobFlowAliveWhenNoSteps: false
+    applications:
+        - Spark
+    masterInstanceType: m5.xlarge
+    slaveInstanceType: m5.xlarge
+    instanceCount: 3
+    ec2KeyName: terraformed_emr_key_pair
+    ec2SubnetId: subnet-0102d08affa7ad559
+    serviceRole: emr-service-role
+    jobFlowRole: emr_instance_profile
+
+    steps:
+        - name: Spark_job_test
+          jar: "command-runner.jar"
+          actionOnFailure: TERMINATE_JOB_FLOW
+          commands:
+            - spark-submit s3://spark-job-data-input/spark_app/pyspark_app.py 
+    wait: true
+
+triggers:
+  - id: daily
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "@daily"
+
+# This should trigger every 1/4 hour
+# triggers:
+#   - id: schedule
+#     type: io.kestra.plugin.core.trigger.Schedule
+#     cron: "*/8 * * * *"

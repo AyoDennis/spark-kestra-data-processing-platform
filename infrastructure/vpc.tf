@@ -24,18 +24,6 @@ resource "aws_subnet" "public-subnet-1" {
   }
 }
 
-# Creating public subnet 2
-resource "aws_subnet" "public-subnet-2" {
-  vpc_id                  = aws_vpc.emr-vpc.id
-  cidr_block              = "10.0.2.0/24"
-  availability_zone       = "eu-central-1b"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "public-subnet-2"
-  }
-}
-
 
 # Creating internet gateway and attaching to VPC
 resource "aws_internet_gateway" "igw" {
@@ -63,11 +51,5 @@ resource "aws_route_table" "public-rt" {
 # Making explicit association of public subnet 1 to route table
 resource "aws_route_table_association" "public-subnet-association-1" {
   subnet_id      = aws_subnet.public-subnet-1.id
-  route_table_id = aws_route_table.public-rt.id
-}
-
-# Making explicit association of public subnet 2 to route table
-resource "aws_route_table_association" "public-subnet-association-2" {
-  subnet_id      = aws_subnet.public-subnet-2.id
   route_table_id = aws_route_table.public-rt.id
 }

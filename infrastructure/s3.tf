@@ -25,22 +25,6 @@ resource "aws_s3_bucket" "s3-logs" {
   }
 }
 
-resource "aws_s3_bucket" "s3-input-test" {
-  bucket = "spark-job-data-input-test"
-
-  tags = {
-    Service     = "EMR"
-    Environment = "Production"
-  }
-}
-
-resource "aws_s3_bucket_versioning" "s3-input-test-versioning" {
-  bucket = aws_s3_bucket.s3-input-test.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
 
 resource "aws_s3_bucket_versioning" "s3-input-versioning" {
   bucket = aws_s3_bucket.s3-input.id

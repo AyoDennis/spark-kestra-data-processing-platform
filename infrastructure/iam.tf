@@ -30,7 +30,7 @@ resource "aws_iam_policy" "kestra_user_policy" {
   name        = "kestra-user-policy"
   description = "Dedicated policy for kestra instance "
 
-    policy = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
