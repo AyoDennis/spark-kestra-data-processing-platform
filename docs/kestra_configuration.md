@@ -31,11 +31,11 @@ Kestra is a unified orchestration platform to simplify business workflows. It pr
 
 ## **3. Workflow**
 ### **3.1 Data Generation DAG**
-- **Trigger**: Runs daily at `9:00 AM`.
+- **Trigger**: Runs daily at `12:00 AM`.
 - **Steps**:
   1. Creates an EMR cluster.
   2. Submits the `data_generator.py` Spark job to generate synthetic data.
-  3. Saves the generated data to the `raw/` folder in the S3 bucket.
+  3. Saves the generated data to the `carrier_performance/`, `route_efficiency`, `cost_analysis`, `delay_trends`, and `warehouse_demand` folder in the S3 `spark-job-data-output` bucket.
   4. Terminates the EMR cluster.
 
 ### **3.2 Data Processing DAG**
