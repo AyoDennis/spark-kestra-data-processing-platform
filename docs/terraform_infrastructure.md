@@ -29,3 +29,35 @@ Below are the various services and resources that were used ito build the platfo
   - All the buckets are also versioned, to prevent data loss
 
 ---
+
+
+### **2.3 IAM Policy**
+- **Purpose**: Provisions IAM roles and security groups required for Amazon EMR clusters.
+- **Resources**:
+  - IAM roles and policies:
+    - `emr-service-role`
+    - `emr_instance_profile`
+  - Security groups for EMR master and slave nodes.
+
+---
+
+#### **2.4 Backend Module**
+The Terraform state is stored remotely in an S3 bucket to enable collaboration and state locking.
+- **Purpose**: Configures the remote backend for Terraform state storage.
+- **Resources**:
+  - S3 bucket (`spark-kestra-platform`) for storing the Terraform state file.
+
+---
+
+## **3. Deployment**
+Terraform is deployed using the **GitHub CD pipeline**. The pipeline automates the following steps:
+1. **Terraform Initialization**:
+   - Initializes the Terraform backend and downloads required providers.
+2. **Terraform Plan**:
+   - Generates an execution plan to show the changes Terraform will make.
+3. **Terraform Apply**:
+   - Applies the changes to provision or update the infrastructure.
+
+The pipeline ensures consistent and automated deployments, reducing the risk of manual errors.
+
+---
