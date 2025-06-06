@@ -86,7 +86,7 @@ Entire provisioning of cloud resources (S3 buckets; IAM roles, users, policies; 
 - **Modular Code Structure:** 
 The repository is organized into modules: infrastructure, orchestration, data processing, and CI/CD, improving maintainability and collaboration. <br>
 
-- **Environment Separation:** 
+- **Environment Isolation:** 
 Full isolation of raw and processed data in AWS S3. The lake is also treated as immutable, following data lake design principles.
 
 - Detailed [documentation](https://github.com/AyoDennis/spark-kestra-data-processing-platform/tree/main/docs) to aid onboarding, repository cloning, and commercial deployment.
