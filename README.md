@@ -33,7 +33,7 @@ An automated platform designed to efficiently handle big data workloads (ingesti
 | [Orchestration (Kestra)](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/kestra_configuration.md) | Manages data pipeline workflows |
 
 
-## ☁️ Architecture Overview
+## Architecture Overview
 ![workflow](/assests/workflow.svg)
 Clear [architecture documentation](https://github.com/Data-Bishop/Team5-BuildItAll-Data-Platform/blob/main/docs/architecture.md) outlining the platform’s design.
 
