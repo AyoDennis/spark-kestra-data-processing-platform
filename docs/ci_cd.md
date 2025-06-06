@@ -21,23 +21,12 @@ spark-kestra-data-pricessing-platform/
 │   ├── s3.tf/                    # Terraform resources for AWS S3 Buckets 
 │   ├── vpc.tf/                   # Terraform resources for AWS VPC resources, including VPC, Subnet, Internet Gateway, Route Table
 ├── kestra/                       # Kestra orchestration setup
-│   ├── flows/                     # Airflow DAGs
-│   │   ├── data_generation_dag.py # DAG for data generation
-│   │   ├── data_processing_dag.py # DAG for data processing
-│   │   ├── notification/         # Notification scripts
-│   │   │   └── email_alert.py    # Email notifications for task success/failure
-│   │   ├── config/               # Configuration files
-│   │   │   └── config.py         # Airflow configuration variables
-│   ├── setup.sh                  # Script to set up Airflow dependencies
-│   ├── start-airflow.sh          # Script to start Airflow services
-│   ├── requirements.txt          # Python dependencies for Airflow
-│   ├── docker-compose.yml        # Docker Compose configuration for Airflow
-│   ├── Dockerfile                # Custom Dockerfile for Airflow
-├── spark_jobs/                   # Spark job scripts
-│   ├── data_generator.py         # Spark job for synthetic data generation
+│   ├── flows/                    # kestra flow
+│   │   ├── emr_cluster.yaml      # YAML for EMR configuration and orchestration
+│   │   ├── docker-cpmpose.yml    # Docker Compose configuration for kestra container orchestration
+├── spark/                        # Spark job scripts
+│   ├── data_generator.py         # Python script for synthetic data generation
 │   ├── data_processor.py         # Spark job for data processing
-│   ├── requirements.txt          # Python dependencies for Spark jobs
-│   ├── bootstrap.sh              # Bootstrap script for EMR cluster
 ├── .gitignore                    # Git ignore rules
 ```
 ---
