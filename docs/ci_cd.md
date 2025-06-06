@@ -34,7 +34,7 @@ spark-kestra-data-pricessing-platform/
 ## **2. CI/CD**
 
 ### **2.1 Continuous Integration (CI)**
-The CI pipeline ensures code quality and validates Terraform configurations. It is defined in `.github/workflows/ci.yml`.
+The CI pipeline ensures code quality and validates Terraform configurations. It is defined in `.github/workflows/ci_cd.yml`.
 
 #### **CI Workflow Steps**
 1. **Terraform Validation**:
@@ -46,20 +46,16 @@ The CI pipeline ensures code quality and validates Terraform configurations. It 
    - Uses `flake8` to enforce Python code style and linting rules.
 
 #### **Trigger**:
-- Runs on every pull request to the `dev` or `main` branches.
+- Runs on every pull request to the `main` branch.
 
 ---
 
 ### **2.2 Continuous Deployment (CD)**
-The CD pipeline automates the deployment of Terraform infrastructure and uploads necessary files to S3. It is defined in `.github/workflows/cd.yml`.
+The CD pipeline is the final stage of the automated action that uploads necessary files to S3. It is defined in the later part of the `.github/workflows/ci_cd.yml`.
 
 #### **CD Workflow Steps**
-1. **Terraform Deployment**:
-   - Initializes the Terraform backend.
-   - Runs `terraform plan` to generate an execution plan.
-   - Applies the Terraform configuration to provision or update AWS resources.
-2. **File Upload to S3**:
-   - Uploads Airflow setup scripts, DAGs, and Spark job scripts to the appropriate S3 buckets.
+1.  **Sync spark script to S3**:
+   - Syncs spark job, data generation and kestra flow to the appropriate S3 buckets.
 
 #### **Trigger**:
 - Runs on every push to the `main` branch.
