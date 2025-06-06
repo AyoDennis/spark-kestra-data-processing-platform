@@ -1,4 +1,4 @@
-# **Terraform Infrastructure Documentation**
+# **Terraform Infrastructure**
 
 ## **1. Purpose**
 The Terraform infrastructure is designed to provision and manage the resources required for the **Logistics Big Data Platform**. It automates the creation of compute, storage, networking, and orchestration components in AWS, ensuring consistency, scalability, and security.
