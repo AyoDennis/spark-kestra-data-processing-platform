@@ -79,5 +79,4 @@ The purpose of this architecture is to build a **data platform** that supports:
 - **EMR Roles**:
   - `emr-service-role`: Grants the EMR cluster access to AWS services.
   - `emr_instance_profile`: Grants EC2 instances in the cluster access to S3 and other resources.
-
 ---
