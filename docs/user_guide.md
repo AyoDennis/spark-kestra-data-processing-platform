@@ -104,3 +104,9 @@ The Terraform backend must be set up before deploying the infrastructure. This i
     ```bash
     docker-compose logs kestra:latest
     ```
+---
+    
+### **8 Spark Job Failures**
+- Check the EMR logs in the `emr-cluster-spark-logs/test-emr-logs/` S3 bucket.
+
+---
