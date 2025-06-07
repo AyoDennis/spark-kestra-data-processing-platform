@@ -93,12 +93,11 @@ The purpose of this architecture is to build a **data platform** that supports:
 
 ### **Step 1: Data Processing**
 1. **Trigger**:
-   - The `data_processing_dag.py` flow executes daily at `12:00 AM`.
+   - The `data_processing.py` flow executes daily at `12:00 AM`.
 2. **Workflow**:
    - Creates an EMR cluster.
    - Submits a Spark job (`data_processor.py`) to process raw parquet datasets/files generated that day from the data generation workflow.
-   - Saves the processed data to the run date subfolder (e.g `2o25-04-26`), in the `processed/` folder in the `builditall-client-data` S3 bucket.
+   - Saves the processed data to the `spark-job-data-output` S3 bucket.
    - Terminates the EMR cluster after the job completes.
-
 
 ---
