@@ -35,3 +35,23 @@ pip install -r requirements.txt
 ```
 
 ---
+
+
+## **3. Infrastructure Deployment**
+
+### **3.1 Bootstrap the Terraform Backend**
+The Terraform backend must be set up before deploying the infrastructure. This includes creating the S3 bucket, IAM and VPC stacks.
+
+1. Navigate to the `infrastructure/` directory:
+   ```bash
+   cd infrastructure/
+   ```
+2. Initialize Terraform:
+   ```bash
+   terraform init
+   ```
+3. Apply the configuration:
+   ```bash
+   terraform apply
+   ```
+
