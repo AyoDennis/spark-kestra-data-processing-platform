@@ -16,3 +16,11 @@ Before you begin, ensure you have the following installed and configured on your
 - Create the `builditall-secrets` in AWS Secrets Manager.
 
 ---
+
+## **2. Repository Setup**
+
+### **2.1 Clone the Repository**
+Clone the repository to your local machine:
+```bash
+git clone https://github.com/AyoDennis/spark-kestra-data-processing-platform/tree/main.git
+```
