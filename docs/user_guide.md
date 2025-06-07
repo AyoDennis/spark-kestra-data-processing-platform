@@ -24,3 +24,12 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/AyoDennis/spark-kestra-data-processing-platform/tree/main.git
 ```
+
+##**2.2 Install Python Dependencies**
+Navigate to the `orchestration` directory and install the required Python packages:
+```bash
+cd orchestration
+pip install -r requirements.txt
+```
+
+---
