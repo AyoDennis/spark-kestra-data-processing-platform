@@ -96,4 +96,11 @@ The Terraform backend must be set up before deploying the infrastructure. This i
 - The CD pipeline deploys the pyspark scripts to S3.
 - **Trigger**: Runs on pushes to the `main` branch.
 
+---
 
+### **7. Kestra Issues**
+- **Webserver Not Starting**:
+  - Check the logs:
+    ```bash
+    docker-compose logs kestra:latest
+    ```
