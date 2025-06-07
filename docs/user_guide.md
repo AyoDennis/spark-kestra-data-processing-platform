@@ -86,3 +86,14 @@ The Terraform backend must be set up before deploying the infrastructure. This i
 
 ---
 
+## **6. CI/CD Pipelines**
+
+### **6.1 Continuous Integration (CI)**
+- The CI pipeline validates the Python code.
+- **Trigger**: Runs on pull requests to the `main` branches.
+
+### **6.2 Continuous Deployment (CD)**
+- The CD pipeline deploys the pyspark scripts to S3.
+- **Trigger**: Runs on pushes to the `main` branch.
+
+
