@@ -38,3 +38,23 @@ The purpose of this architecture is to build a **data platform** that supports:
     - `emr_cluster.yaml`: Provisions the EMR cluster and processes raw parquet datasets using Spark on EMR.
 
 ---
+
+### **Storage: S3**
+- **Purpose**: Amazon S3 is used to store raw, processed, generated and Cluster logs data.
+- **Buckets**:
+  - `spark-job-data-input`:
+    - **Folder**:
+      - `spark_app/`: Stores Spark job script.
+  - `spark-job-data-source-1`:
+    - **Folder**:
+      - `/data_source/shipment/`: Stores Generated data.
+  - `emr-cluster-spark-logs`:
+    - **Folder**:
+      - `/test-emr-logs/`: Stores EMR logs.
+  - `spark-kestra-platform/key/`:
+    - **Folder**:
+      - `key/`: Stores Terraform backend and state configuration.
+- **Bucket Policies**:
+  - Grant access to specific IAM roles (e.g., Kestra, EC2 and EMR roles) for reading and writing data.
+
+---
