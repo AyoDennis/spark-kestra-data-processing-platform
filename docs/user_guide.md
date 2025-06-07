@@ -1,4 +1,6 @@
-# **Onboarding Guide**## **1. Prerequisites**
+# **Onboarding Guide**
+
+## **1. Prerequisites**
 Before you begin, ensure you have the following installed and configured on your local machine:
 
 ### **1.1 Tools**
