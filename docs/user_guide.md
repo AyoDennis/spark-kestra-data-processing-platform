@@ -26,9 +26,9 @@ git clone https://github.com/AyoDennis/spark-kestra-data-processing-platform/tre
 ```
 
 ##**2.2 Install Python Dependencies**
-Navigate to the `orchestration` directory and install the required Python packages:
+Navigate to the `requirements.txt` file and install the required Python packages:
 ```bash
-cd orchestration
+cd ..
 pip install -r requirements.txt
 ```
 
