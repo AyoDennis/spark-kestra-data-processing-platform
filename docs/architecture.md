@@ -14,7 +14,7 @@ The purpose of this architecture is to build a **data platform** that supports:
 ## **2. Content**
 
 ### **Compute: EMR**
-- **Purpose**: Amazon EMR is used to run Spark jobs for data generation and processing.
+- **Purpose**: Amazon EMR is used to run Spark jobs for data processing.
 - **Configuration**:
   - **Cluster**: Configured with one master node (`m5.xlarge`) and two worker nodes (`m5.xlarge`).
   - **Applications**: Spark is installed on the cluster.
@@ -24,5 +24,17 @@ The purpose of this architecture is to build a **data platform** that supports:
   - **IAM Roles**:
     - `emr-service-role`: Allows the cluster to interact with AWS services.
     - `emr_instance_profile`: Grants EC2 instances in the cluster access to S3 and other resources.
+
+---
+
+### **Orchestration: Kestra**
+- **Purpose**: Kestra is used to orchestrate workflows for data processing.
+- **Configuration**:
+  - **Deployment**: Kestra is deployed using Docker Compose.
+  - **Components**:
+    - **kestra server**: Accessible on port `8080`.
+    - **Redis**: Used as the Celery broker.
+  - **Flows**:
+    - `emr_cluster.yaml`: Provisions the EMR cluster and processes raw parquet datasets using Spark on EMR.
 
 ---
