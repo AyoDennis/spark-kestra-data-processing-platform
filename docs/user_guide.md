@@ -74,5 +74,15 @@ The Terraform backend must be set up before deploying the infrastructure. This i
    - Use the default credentials:
      - **Username**: `kestra`
      - **Password**: `k3str4`
+---
 
+## **5. Spark Jobs**
+
+### **5.1 Running Spark Jobs**
+1. Spark jobs are located in the `spark` directory.
+2. Submit a Spark job to the EMR cluster using the Airflow DAGs:
+   - `data_generation_dag.py`: Submits the `data_generator.py` job.
+   - `python data_processing_dag.py` generates the data.
+
+---
 
