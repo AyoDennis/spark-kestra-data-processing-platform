@@ -55,3 +55,24 @@ The Terraform backend must be set up before deploying the infrastructure. This i
    terraform apply
    ```
 
+ ---
+
+## **4. Kestra Setup**
+
+### **4.1 Start Airflow Locally**
+1. Navigate to the `kestra` directory:
+   ```bash
+   cd kestra
+   ```
+2. Start Airflow using Docker Compose:
+   ```bash
+   
+   docker-compose up -d
+   ```
+3. Access the Airflow UI:
+   - Open your browser and navigate to `http://localhost:8080`.
+   - Use the default credentials:
+     - **Username**: `kestra`
+     - **Password**: `k3str4`
+
+
