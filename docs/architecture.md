@@ -93,7 +93,7 @@ The purpose of this architecture is to build a **data platform** that supports:
 
 ### **Step 1: Data Processing**
 1. **Trigger**:
-   - The `data_processing_dag.py` DAG runs daily at `12:00 AM`.
+   - The `data_processing_dag.py` flow executes daily at `12:00 AM`.
 2. **Workflow**:
    - Creates an EMR cluster.
    - Submits a Spark job (`data_processor.py`) to process raw parquet datasets/files generated that day from the data generation workflow.
