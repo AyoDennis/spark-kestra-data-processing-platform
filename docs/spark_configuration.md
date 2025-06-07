@@ -1,5 +1,5 @@
 
-# **Spark Jobs Documentation**
+# **Spark Documentation**
 
 ## **1. Purpose**
 Spark jobs are used for data generation and processing. They run on Amazon EMR clusters and interact with S3 for input and output data.
