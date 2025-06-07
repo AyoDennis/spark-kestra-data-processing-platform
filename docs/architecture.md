@@ -58,3 +58,15 @@ The purpose of this architecture is to build a **data platform** that supports:
   - Grant access to specific IAM roles (e.g., Kestra, EC2 and EMR roles) for reading and writing data.
 
 ---
+
+### **Networking**
+- **VPC**:
+  - A custom VPC is created with the following:
+    - **Public Subnets (1)**: For EMR instances
+  - **Routing**:
+    - Public subnet have an internet gateway for inbound and outbound traffic.
+- **Security Groups**:
+  - **EMR**:
+    - Master and slave nodes allow internal communication and SSH access.
+
+---
