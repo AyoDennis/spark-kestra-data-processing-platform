@@ -70,3 +70,14 @@ The purpose of this architecture is to build a **data platform** that supports:
     - Master and slave nodes allow internal communication and SSH access.
 
 ---
+
+### **IAM Roles**
+- **Kestra Role**:
+  - Grants access to:
+    - S3 buckets.
+    - EMR clusters for job submission and monitoring.
+- **EMR Roles**:
+  - `emr-service-role`: Grants the EMR cluster access to AWS services.
+  - `emr_instance_profile`: Grants EC2 instances in the cluster access to S3 and other resources.
+
+---
