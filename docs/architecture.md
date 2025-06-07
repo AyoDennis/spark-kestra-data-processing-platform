@@ -48,6 +48,13 @@ The purpose of this architecture is to build a **data platform** that supports:
   - `spark-job-data-source-1`:
     - **Folder**:
       - `/data_source/shipment/`: Stores Generated data.
+  - `spark-job-data-output`:
+    - **Folders**:
+      - `carrier_performance/`: Stores carrier performance data.
+      - `cost_analysis/`: Stores cost analysis data.
+      - `daily_trends/`: Stores daily trends data.
+      - `route_efficiency/`: Stores route efficiency data.
+      - `warehouse_demand/`: Stores warehouse demand data.
   - `emr-cluster-spark-logs`:
     - **Folder**:
       - `/test-emr-logs/`: Stores EMR logs.
@@ -79,4 +86,19 @@ The purpose of this architecture is to build a **data platform** that supports:
 - **EMR Roles**:
   - `emr-service-role`: Grants the EMR cluster access to AWS services.
   - `emr_instance_profile`: Grants EC2 instances in the cluster access to S3 and other resources.
+
+---
+
+## **3. Workflow**
+
+### **Step 1: Data Processing**
+1. **Trigger**:
+   - The `data_processing_dag.py` DAG runs daily at `12:00 AM`.
+2. **Workflow**:
+   - Creates an EMR cluster.
+   - Submits a Spark job (`data_processor.py`) to process raw parquet datasets/files generated that day from the data generation workflow.
+   - Saves the processed data to the run date subfolder (e.g `2o25-04-26`), in the `processed/` folder in the `builditall-client-data` S3 bucket.
+   - Terminates the EMR cluster after the job completes.
+
+
 ---
