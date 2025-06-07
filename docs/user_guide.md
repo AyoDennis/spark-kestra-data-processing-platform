@@ -106,12 +106,12 @@ The Terraform backend must be set up before deploying the infrastructure. This i
     ```
 ---
     
-### **8 Spark Job Failures**
+### **8. Spark Job Failures**
 - Check the EMR logs in the `emr-cluster-spark-logs/test-emr-logs/` S3 bucket.
 
 ---
 
-## **9. Additional Resources**
+### **9. Additional Resources**
 - [AWS Documentation](https://aws.amazon.com/documentation/)
 - [Terraform Documentation](https://developer.hashicorp.com/terraform/docs)
 - [Apache Airflow Documentation](https://airflow.apache.org/docs/)
