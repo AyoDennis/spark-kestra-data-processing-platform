@@ -35,8 +35,3 @@ triggers:
     type: io.kestra.plugin.core.trigger.Schedule
     cron: "@daily"
 
-# This should trigger every 1/4 hour
-# triggers:
-#   - id: schedule
-#     type: io.kestra.plugin.core.trigger.Schedule
-#     cron: "*/8 * * * *"
