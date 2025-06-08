@@ -35,9 +35,9 @@ An automated platform designed to efficiently handle big data workloads (ingesti
 
 ## Architecture Overview
 
-![image](https://github.com/user-attachments/assets/ec46f3cc-7d5c-4129-b0c1-cc8da3e25cb9)
+![image](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/asset/platform_architecture.png)
 
-Clear [architecture documentation](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/architecture.md) outlining the platform’s design.
+Clear **architecture documentation** outlining the platform’s design.
 
 For Architecture documentation[ Click here](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/architecture.md)
 
