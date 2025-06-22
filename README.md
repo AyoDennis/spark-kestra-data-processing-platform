@@ -42,7 +42,7 @@ An automated platform designed to efficiently handle big data workloads (ingesti
 For Architecture documentation[ Click here](https://github.com/AyoDennis/spark-kestra-data-processing-platform/blob/main/docs/architecture.md)
 
 ## Technologies Used
-- Cloud: AWS Servicess (S3, EMR, IAM, VPC, SSM)
+- Cloud: AWS Services (S3, EMR, IAM, VPC, SSM)
 - Big Data Framework: Apache Spark
 - Workflow Orchestration: Kestra
 - Infrastructure: Terraform
